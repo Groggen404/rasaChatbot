@@ -1,0 +1,331 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_happy
+  - action: utter_happy
+  - action: utter_goodbye
+
+
+- story: weather_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_weather
+  - action: utter_ask_weather
+  - intent: thanks
+  - action: utter_thanks
+
+- story: sport_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_ask_sport
+    entities:
+    - sport: 篮球
+  - action: sport_form
+  - active_loop: sport_form
+  - slot_was_set:
+    - requested_slot: sport
+  - slot_was_set:
+    - sport: 你会踢足球吗
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_return_sport_name
+
+- story: joke_story_3
+  steps:
+  - intent: ask_eat_condition
+  - action: utter_eat_condition
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - intent: affirm
+  - action: utter_joke
+  - intent: ask
+  - action: utter_give_anwser
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+  - action: utter_goodbye
+
+- story: sport_story_1
+  steps:
+  - intent: mood_happy
+  - action: utter_happy
+  - intent: mood_ask_sport
+    entities:
+    - sport: 击剑
+  - action: sport_form
+  - active_loop: sport_form
+  - slot_was_set:
+    - sport: 击剑
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_return_sport_name
+  - intent: mood_ask_sport
+    entities:
+    - sport: 足球
+  - action: sport_form
+  - active_loop: sport_form
+  - slot_was_set:
+    - sport: 击剑
+  - slot_was_set:
+    - sport: 足球
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_return_sport_name
+  - intent: ask_weather
+  - action: utter_ask_weather
+
+- story: game_story_1
+  steps:
+  - intent: mood_ask_action
+    entities:
+    - game: 英雄联盟
+  - action: game_form
+  - active_loop: game_form
+  - slot_was_set:
+    - game: 英雄联盟
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_return_game_name
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+
+- story: horoscope_story_1
+  steps:
+  - intent: function1
+  - action: func1_form
+  - active_loop: func1_form
+  - slot_was_set:
+    - requested_slot: xingzuo
+  - slot_was_set:
+    - xingzuo: 白羊座
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_horoscopeslots_values
+  - intent: inform_xingzuo
+    entities:
+    - xingzuo: 水瓶座
+  - action: func1_form
+  - active_loop: func1_form
+  - slot_was_set:
+    - xingzuo: 白羊座
+  - slot_was_set:
+    - xingzuo: 水瓶座
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_horoscopeslots_values
+  - intent: inform_xingzuo
+    entities:
+    - xingzuo: 摩羯座
+  - action: func1_form
+  - active_loop: func1_form
+  - slot_was_set:
+    - xingzuo: 水瓶座
+  - slot_was_set:
+    - xingzuo: 摩羯座
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_horoscopeslots_values
+  - intent: inform_xingzuo
+    entities:
+    - xingzuo: 天秤座
+  - action: func1_form
+  - active_loop: func1_form
+  - slot_was_set:
+    - xingzuo: 摩羯座
+  - slot_was_set:
+    - xingzuo: 天秤座
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_horoscopeslots_values
+  - intent: thanks
+  - action: utter_thanks
+  - intent: mydata
+  - action: action_horoscope_msg
+
+- story: bored_story
+  steps:
+  - intent: mood_boring
+  - action: utter_boring
+
+- story: weather_story
+  steps:
+  - intent: ask_weather
+  - action: utter_ask_weather
+
+
+- story: actor_story_1
+  steps:
+  - intent: film_search
+  - action: utter_ask_func
+  - intent: film_actor
+  - action: actor_form
+  - active_loop: actor_form
+  - slot_was_set:
+    - requested_slot: actor
+  - slot_was_set:
+    - actor: 周杰伦
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_actorslots_values
+  - action: action_return_actor_msg
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+
+- story: movie_story_1
+  steps:
+  - intent: film_search
+  - action: utter_ask_func
+  - intent: film_movie
+  - action: movie_form
+  - active_loop: movie_form
+  - slot_was_set:
+    - requested_slot: movie
+  - slot_was_set:
+    - movie: 绿毛水怪
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_return_movie_msg
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+
+- story: type_story_1
+  steps:
+  - intent: film_search
+  - action: utter_ask_func
+  - intent: film_movietype
+  - action: movietype_form
+  - active_loop: movietype_form
+  - slot_was_set:
+    - requested_slot: movie_type
+  - slot_was_set:
+    - movie_type: 爱情
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_return_type_msg
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+
+- story: director_story_1
+  steps:
+  - intent: film_search
+  - action: utter_ask_func
+  - intent: film_director
+  - action: director_form
+  - active_loop: director_form
+  - slot_was_set:
+    - requested_slot: director
+  - slot_was_set:
+    - director: 李安
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_return_director_msg
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+
+- story: language_story_1
+  steps:
+  - intent: film_search
+  - action: utter_ask_func
+  - intent: film_language
+  - action: language_form
+  - active_loop: language_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: 日语
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_return_language_msg
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+
+
+- story: insertcomment_story_1
+  steps:
+  - intent: comment_in
+  - action: msg_form
+  - active_loop: msg_form
+  - slot_was_set:
+    - requested_slot: movie
+  - slot_was_set:
+    - movie: 绿毛水怪
+  - slot_was_set:
+    - requested_slot: comment
+  - slot_was_set:
+    - comment: 王小波的书改编成电影一直都不错的
+  - slot_was_set:
+    - requested_slot: score
+  - slot_was_set:
+    - score: '4'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_insert_comment
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+
+
+- story: comment_story_1
+  steps:
+  - intent: film_search
+  - action: utter_ask_func
+  - intent: film_movie
+  - action: movie_form
+  - active_loop: movie_form
+  - slot_was_set:
+    - requested_slot: movie
+  - slot_was_set:
+    - movie: Lost Prophet
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_return_movie_msg
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: comment_search
+  - action: action_return_comment
+
+#- story: interactive_story_1
+#  steps:
+#  - intent: greet
+#  - action: action_url_test
+#  - action: utter_goodbye

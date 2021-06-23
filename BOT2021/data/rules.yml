@@ -1,0 +1,204 @@
+version: "2.0"
+
+rules:
+
+# goodbye
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+# botchallenge rules
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+#nameask
+- rule: anwser name
+  steps:
+  - intent: ask_name
+  - action: utter_ask_name
+
+
+# common question
+#- rule: respond to FAQs
+#  steps:
+#  - intent: faq
+#  - action: utter_faq
+
+##chit chat rules
+#- rule: respond to chitchat
+#  steps:
+#  - intent: chitchat
+#  - action: utter_chitchat
+
+# funtion1: horoscope_sign test
+- rule: activate function form
+  steps:
+    - intent: function1   # intent that triggers form activation
+    - action: func1_form     # run the form
+    - active_loop: func1_form  # this form is active
+
+- rule: submit form1
+  condition:
+  - active_loop: func1_form   # this form must be active
+  steps:
+  - action: func1_form      # run the form
+  - active_loop: null            # the form is no longer active because it has been filled
+  - action: utter_submit         # action to take after the form is complete
+  - action: utter_horoscopeslots_values   # action to take after the form is complete
+
+
+# get_sport_msg
+- rule: sport_form
+  steps:
+    - intent: mood_ask_sport   # intent that triggers form activation
+    - action: sport_form     # run the form
+    - active_loop: sport_form  # this form is active
+
+- rule: submit sportform
+  condition:
+  - active_loop: sport_form   # this form must be active
+  steps:
+  - action: sport_form     # run the form
+  - active_loop: null            # the form is no longer active because it has been filled
+  - slot_was_set:
+      - requested_slot: null
+  - action: action_return_sport_name
+##get_city_msg
+#- rule: city_form
+#  steps:
+#    - intent: ask_city   # intent that triggers form activation
+#    - action: city_form     # run the form
+#    - active_loop: city_form  # this form is active
+#
+#- rule: submit cityform
+#  condition:
+#  - active_loop: city_form   # this form must be active
+#  steps:
+#  - action: city_form     # run the form
+#  - active_loop: null            # the form is no longer active because it has been filled
+
+- rule: game_form
+  steps:
+    - intent: mood_ask_action   # intent that triggers form activation
+    - action: game_form     # run the form
+    - active_loop: game_form  # this form is active
+
+- rule: submit gameform
+  condition:
+  - active_loop: game_form   # this form must be active
+  steps:
+  - action: game_form     # run the form
+  - active_loop: null            # the form is no longer active because it has been filled
+  - action: action_return_game_name
+
+- rule: movie_form
+  steps:
+    - intent: film_movie
+    - action: movie_form
+    - active_loop: movie_form
+
+- rule: submit movieform
+  condition:
+    - active_loop: movie_form
+  steps:
+    - action: movie_form
+    - active_loop: null
+    - action: action_return_movie_msg
+    - action: action_deactivate_form
+
+- rule: director_form
+  steps:
+    - intent: film_director
+    - action: director_form
+    - active_loop: director_form
+
+- rule: submit directorform
+  condition:
+    - active_loop: director_form
+  steps:
+    - action: director_form
+    - active_loop: null
+    - action: action_return_director_msg
+    - action: action_deactivate_form
+
+- rule: movietype_form
+  steps:
+    - intent: film_movietype
+    - action: movietype_form
+    - active_loop: movietype_form
+
+- rule: submit movietypeform
+  condition:
+    - active_loop: movietype_form
+  steps:
+    - action: movietype_form
+    - active_loop: null
+    - action: action_return_type_msg
+    - action: action_deactivate_form
+
+- rule: language_form
+  steps:
+    - intent: film_language
+    - action: language_form
+    - active_loop: language_form
+
+- rule: submit languageform
+  condition:
+    - active_loop: language_form
+  steps:
+    - action: language_form
+    - active_loop: null
+    - action: action_return_language_msg
+    - action: action_deactivate_form
+
+- rule: actor_form
+  steps:
+    - intent: film_actor
+    - action: actor_form
+    - active_loop: actor_form
+
+- rule: submit actorform
+  condition:
+    - active_loop: actor_form
+  steps:
+    - action: actor_form
+    - active_loop: null
+    - action: utter_actorslots_values
+    - action: action_return_actor_msg
+    - action: action_deactivate_form
+#- rule: score_form
+#  steps:
+#    - intent: score_film
+#    - action: score_form
+#    - active_loop: score_form
+
+#- rule: submit score_form
+#  condition:
+#    - active_loop: score_form
+#  steps:
+#    - action: score_form
+#    - active_loop: null
+
+- rule: getdata
+  steps:
+    - intent: mydata
+    - action: action_horoscope_msg
+
+
+- rule: msg_form
+  steps:
+    - intent: comment_in
+    - action: msg_form
+    - active_loop: msg_form
+
+- rule: submit msg_form
+  condition:
+    - active_loop: msg_form
+  steps:
+    - action: msg_form
+    - active_loop: null
+    - action: action_insert_comment
+    - action: action_deactivate_form

@@ -1,0 +1,290 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- comment_search
+- film_movie:
+    use_entities: []
+- film_search
+- thanks
+- comment_in
+- score_film:
+    use_entities: []
+- film_language:
+    use_entities: []
+- film_director:
+    use_entities: []
+- film_movietype:
+    use_entities: []
+- film_actor:
+    use_entities: []
+- film_random
+- ask_weather
+- mood_boring
+- mydata
+- function1:
+    use_entities: []
+- inform_xingzuo
+- ask_name
+- mood_ask_action:
+    use_entities: []
+- bot_challenge
+- mood_happy
+- mood_ask_sport:
+    use_entities: []
+- affirm
+- ask_eat_condition
+- mood_unhappy
+- ask
+- goodbye
+- deny
+- film_func
+entities:
+- actor
+- comment
+- director
+- food
+- game
+- language
+- movie
+- movie_type
+- score
+- sport
+- xingzuo
+slots:
+  xingzuo:
+    type: text
+    auto_fill: false
+    influence_conversation: false
+  sport:
+    type: text
+    auto_fill: false
+    influence_conversation: false
+  food:
+    type: text
+    auto_fill: false
+    influence_conversation: false
+  game:
+    type: text
+    auto_fill: false
+    influence_conversation: false
+  actor:
+    type: text
+    auto_fill: false
+    influence_conversation: false
+  movie:
+    type: text
+    auto_fill: false
+    influence_conversation: false
+  comment:
+    type: any
+    auto_fill: false
+    influence_conversation: false
+  movie_type:
+    type: text
+    auto_fill: false
+    influence_conversation: false
+  director:
+    type: any
+    auto_fill: false
+    influence_conversation: false
+  language:
+    type: text
+    auto_fill: false
+    influence_conversation: false
+  score:
+    type: text
+    auto_fill: false
+    influence_conversation: false
+responses:
+  utter_greet:
+  - text: 嗨你好，我是影评机器人Justin
+  utter_cheer_up:
+  - text: 要不要听个笑话呢
+  utter_joke:
+  - text: 从前有座山，山上有座庙，庙里有个帅哥在打代码，打着打着就变成和尚了，想知道为什么吗？
+  utter_give_anwser:
+  - text: 因为头发掉光了
+  - text: 因为编程让人脱发
+  utter_did_that_help:
+  - text: 怎么样，我的笑话有帮助到你吗?
+  utter_happy:
+  - text: 要坚持开心喔!
+  - text: 祝你每天都开心
+  utter_unhappy:
+  - text: 要保持好的心态，不要难过
+  utter_sorry:
+  - text: 抱歉抱歉，我的功能还有待提高
+  utter_goodbye:
+  - text: 期待下次和您的交流
+  utter_ask_name:
+  - text: 我是GYB开发的影评BOT，我叫Justin
+  - text: 我的名字是Justin，一个基于豆瓣影评开发的机器人
+  utter_boring:
+  - text: 最近有一部新剧叫《赘婿》，由郭麒麟主演的喜剧哦！！！十分推荐快去看吧！
+  - text: 不如听听歌曲吧，我听说郭顶的《水星记》很治愈哦！！
+  - text: 要不要看看电影的影评，看看别人不一样的理解呢？
+  utter_ask_weather:
+  - text: 成都今天天气很好，出门动动吧
+  - text: 天气不错，很适合出门运动
+  - text: 下雨了下雨了！建议在家学习
+  utter_iamabot:
+  - text: 噢？是你在怀疑在下吗？
+  utter_ask_xingzuo:
+  - text: 想要查询哪个星座的运势呢？？
+  - text: 您的星座是什么呢
+  utter_ask_sport:
+  - text: 我{sport}玩的很不错喔，想和我试试？
+  - text: 走！每天锻炼一小时，健康生活一辈子！！！！
+  utter_ask_game:
+  - text: 玩!我{game}玩得超好！
+  utter_eat_condition:
+  - text: 嘿嘿，今天吃了又麻又辣的麻婆豆腐～～拌饭超爽的！
+  - text: 实不相瞒，在下刚刚煎了牛排，正面三分钟，反面三分钟，再把两侧焦化一下！噢！绝了！！
+  - text: 我在家里大概是只配吃生菜的地位吧呜呜呜
+  utter_submit:
+  - text: 已经提交
+  - text: 数据准备就绪
+  utter_horoscopeslots_values:
+  - text: |
+      我会用以下信息查询:
+       - 查询星座: {xingzuo}
+  utter_actorslots_values:
+  - text: |
+      我会用以下信息查询:
+       - 查询演员: {actor}
+  utter_thanks:
+  - text: 谢谢支持
+  - text: 感谢使用
+  utter_ask_continue:
+  - text: 要继续吗？
+  utter_ask_func:
+  - text: 想了解什么方面：
+    buttons:
+    - title: 想要查询什么电影呢？
+      payload: /film_movie
+    - title: 想看看哪个演员的代表作呢？
+      payload: /film_actor
+    - title: 想要了解什么类型的电影呢？
+      payload: /film_movietype
+    - title: 想要了解哪个导演的代表作呢？
+      payload: /film_director
+    - title: 想看哪种语言的电影呢
+      payload: /film_language
+    - title: 需要我随机推送吗？
+      payload: /film_random
+  utter_ask_movie:
+  - text: 请在下方输入您想查询的电影名
+  utter_ask_actor:
+  - text: 请在下方输入演员名
+  utter_ask_movie_type:
+  - text: 请在下方输入想查询的电影类型
+  utter_ask_director:
+  - text: 请在下方输入您想了解的导演名称
+  utter_ask_language:
+  - text: 请在下方输入您选择的语言
+  utter_ask_comment:
+  - text: 请在下方输入您想添加的影评
+  utter_ask_score:
+  - text: 请在下方为您喜爱的电影打个分
+    buttons:
+    - title: 1分
+      payload: /score_film{"score":"1"}
+    - title: 2分
+      payload: /score_film{"score":"2"}
+    - title: 3分
+      payload: /score_film{"score":"3"}
+    - title: 4分
+      payload: /score_film{"score":"4"}
+    - title: 5分
+      payload: /score_film{"score":"5"}
+  utter_randommovie:
+  - text: 要不要我随机推荐一个电影呢？
+  - text: 随机向您推荐一部电影信息？
+  utter_ShowComment:
+  - text: 关于{movie}的影评如下 ，快看看吧：
+actions:
+- action_horoscope_msg
+- action_insert_comment
+- action_return_actor_msg
+- action_return_comment
+- action_return_director_msg
+- action_return_game_name
+- action_return_language_msg
+- action_return_movie_msg
+- action_return_sport_name
+- action_return_type_msg
+- action_url_test
+- utter_actorslots_values
+- utter_ask_func
+- utter_ask_game
+- utter_ask_name
+- utter_ask_sport
+- utter_ask_weather
+- utter_boring
+- utter_cheer_up
+- utter_chitchat
+- utter_did_that_help
+- utter_eat_condition
+- utter_give_anwser
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_iamabot
+- utter_joke
+- utter_randommovie
+- utter_sorry
+- utter_submit
+- utter_thanks
+- utter_unhappy
+- validate_horoscope_form
+forms:
+  func1_form:
+    xingzuo:
+    - type: from_entity
+      entity: xingzuo
+      not_intent: chitchat
+  sport_form:
+    sport:
+    - type: from_entity
+      entity: sport
+  game_form:
+    game:
+    - type: from_entity
+      entity: game
+  movie_form:
+    movie:
+    - type: from_text
+      entity: movie
+  actor_form:
+    actor:
+    - type: from_entity
+      entity: actor
+  movietype_form:
+    movie_type:
+    - type: from_entity
+      entity: movie_type
+  director_form:
+    director:
+    - type: from_entity
+      entity: director
+  score_form:
+    score:
+    - type: from_entity
+      entity: score
+  language_form:
+    language:
+    - type: from_entity
+      entity: language
+  msg_form:
+    movie:
+    - type: from_entity
+      entity: movie
+    comment:
+    - type: from_text
+      entity: comment
+    score:
+    - type: from_entity
+      entity: score
